@@ -3,11 +3,18 @@
 @section("content")
 
 <div class="container-fluid bg-create h-110 forget-back">
+<style>
+    .error {
+        color: #f33737;
+        background-color: #ccc;
+    }
+</style>
     <div class="scroll-div">
-        @if (Session::has('message'))
+        @if (Session::has('status'))
                 <div class="alert alert-success" role="alert">
-                    {{ Session::get('message') }}
+                    {{ Session::get('status') }}
                 </div>
+                <!-- <h1 style="color:red;">We have e-mailed your password reset link!</h1> -->
                 {{-- return back()->with('message', 'We have e-mailed your password reset link!'); --}}
         @endif
         <form method="POST" action="{{ route('password.email') }}" enctype="multipart/form-data">
@@ -17,6 +24,9 @@
                 <div class="col-lg-4 offset-lg-4">
                     <div class="login forget-login">
                         <h4 class="mt-3 mb-5 forget-head">FORGET PASSWORD?</h4>
+                        @if($errors->has('email'))
+                                <h4 class="error">{{ $errors->first('email') }}</h4>
+                        @endif
                         <p class="forget-para">Enter your Email Address to reset your password</p>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend mail-bottom">
