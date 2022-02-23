@@ -33,5 +33,6 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('dashboard',[AdminDashboardController::class,'index'])->name('admin.dashboard');
-    Route::get('users',[AdminDashboardController::class,'index'])->name('admin.users');
+    Route::get('users',[AdminDashboardController::class,'allUsers'])->name('admin.users');
+    Route::get('roles',[AdminDashboardController::class,'allRoles'])->name('admin.roles');
 });

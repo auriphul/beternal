@@ -43,11 +43,13 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
         if(request()->file('image')){
+            // dd('is image');
             $image = request()->file('image');
             $image_new =time().$image->getClientOriginalName();
             $image->move('media/image/',$image_new);
             $image_new  =   'media/image/'.$image_new;
         }else{
+            // dd('not image');
             $image_new  =   'media/image/default.png';
         }
 
@@ -57,6 +59,7 @@ class RegisteredUserController extends Controller
             'email'             =>  $request->email,
             'phone_number'      =>  $request->phone,
             'address'           =>  $request->address,
+            'role_id'           =>  2,
             'profile_image'     =>  $image_new,
             'password'          =>  Hash::make($request->password),
         ]);

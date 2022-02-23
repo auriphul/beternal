@@ -4,3 +4,6 @@
     margin-left: unset;
     width: 100%;
 }
+.dataTables_filter{
+    float: right;
+}
