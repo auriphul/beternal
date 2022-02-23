@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.users') }}" class="nav-link @if(Route::currentRouteName() == 'admin.users') active @endif">
+            <a href="{{ route('admin.users') }}" class="nav-link @if(Route::currentRouteName() == 'admin.users' || Route::currentRouteName() == 'admin.roles') active @endif">
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Users
@@ -49,13 +49,13 @@ use Illuminate\Support\Facades\Route;
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+                <a href="{{ route('admin.roles') }}" class="nav-link @if(Route::currentRouteName() == 'admin.roles') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>All Roles</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="javascript:;" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Create Role</p>
                 </a>

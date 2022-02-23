@@ -1,12 +1,21 @@
 @extends("frontend.layouts.layout")
 @section("title","Login")
 @section("content")
+<style>
+    .error {
+        color: #f33737;
+        background-color: #ccc;
+    }
+</style>
     <div class="container-fluid login-bg">
         <div class="scroll-div">
             <div class="row">
                 <div class="col-lg-4 offset-lg-4">
                     <div class="login login-padd">
                         <h4 class="mt-3 mb-4">LOG IN TO YOUR ACCOUNT</h4>
+                        @if($errors->has('email'))
+                                <h4 class="error">{{ $errors->first('email') }}</h4>
+                        @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             <div class="input-group mb-3">
@@ -14,12 +23,16 @@
                                     <span class="input-group-text" id="basic-addon1"><i class="icon-mail"></i></span>
                                 </div>
                                 <input id="email" type="email" class="form-control survey-placeholder" name="email" :value="old('email')" required autofocus placeholder="Email" aria-label="Email" aria-describedby="basic-addon1"/>
+                                
                             </div>
                             <div class="input-group mb-4">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="icon-lock"></i></span>
                                 </div>
                                 <input type="password" id="password" type="password" name="password" required autocomplete="current-password" class="form-control survey-placeholder" placeholder="Password" aria-label="Password"  aria-describedby="basic-addon1" /> 
+                                @if($errors->has('password'))
+                                        <div class="error">{{ $errors->first('password') }}</div>
+                                @endif
                             </div>
                             <div class="d-flex REMEMBER-me">
                                 <div class="col-md-12">
